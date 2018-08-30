@@ -68,6 +68,15 @@ public interface ICustomerHttpService {
 
 Таймауты, заголовки и авторизацию думаю имеет смысл конфигурировать уже на уровне фабрики клиента, чтобы не перегружать контракт сервиса атрибутами. Или же подумать как это сделать на уровне атрибутов.
 
+Исходя из изложенного, можно переписать контракт на следующий
+```csharp
+[ServiceEndpoint("https:\\customer.service\api\v1")]
+public interface ICustomerHttpService {
+    [GetMethodEndpoint("customers\{marketId}")]
+    public Task<List<Customer>> GetCustomers(int marketId);
+}
+```
+
 Создание самого клиента предполагается сделать через фабрику, по типу следующего:
 ```csharp
 public interface IHttpServiceClientFactory<TService> {
