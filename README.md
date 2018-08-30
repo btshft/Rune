@@ -44,7 +44,7 @@ public class CustomerServiceFacade {
 
 ```csharp
 public interface ICustomerHttpService {
-    public Task<List<Customer>> GetCustomers(int marketId);
+    Task<List<Customer>> GetCustomers(int marketId);
 }
 ```
 
@@ -73,7 +73,7 @@ public interface ICustomerHttpService {
 [ServiceEndpoint("https:\\customer.service\api\v1")]
 public interface ICustomerHttpService {
     [GetMethodEndpoint("customers\{marketId}")]
-    public Task<List<Customer>> GetCustomers(int marketId);
+    Task<List<Customer>> GetCustomers(int marketId);
 }
 ```
 
@@ -86,8 +86,8 @@ public interface IHttpServiceClientFactory<TService> {
 Либо же простой сценарий создания "на месте" через обращение к инициализированной статической фабрики библиотеки
 ```csharp
 public static class Rune {
-    TClient CreateClient<TClient>(IConfiguration config);
-    TClient CreateClient<TClient>();
+    public static TClient CreateClient<TClient>(IConfiguration config);
+    public static TClient CreateClient<TClient>();
 }
 ```
 
